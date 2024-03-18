@@ -1,5 +1,6 @@
 from tkinter import Tk, PhotoImage, Label, Entry, Button
 from src.resources.img_paths import *
+from src.controllers.home import signUp, signIn
 
 def home():
     pantalla = Tk()
@@ -37,13 +38,13 @@ def home():
     # SignUp
     imagenBR = PhotoImage(file=imgBtnSignUp)
     btReg = Button(pantalla, text='Registro', image=imagenBR, height='40', width='200')
-    # btReg = Button(pantalla, text='Registro', image=imagenBR, height='40', width='200', command=signUp)
+    btReg = Button(pantalla, text='Registro', image=imagenBR, height='40', width='200', command=lambda: signUp(inputNameReg, inputUserReg, inputPassReg))
     btReg.place(x=300, y=580)
 
     # LogIn 
     imagenBL = PhotoImage(file=imgBtnSignIn)
     btLog = Button(pantalla, text='Inicio', image=imagenBL, height='40', width='200')
-    # btLog = Button(pantalla, text='Inicio', image=imagenBL, height='40', width='200', command=signIn)
+    btLog = Button(pantalla, text='Inicio', image=imagenBL, height='40', width='200', command=lambda: signIn(inputUserLog, inputPassLog))
     btLog.place(x=800, y=580)
 
     pantalla.mainloop()
