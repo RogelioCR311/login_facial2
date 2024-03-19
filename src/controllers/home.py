@@ -6,11 +6,11 @@ import cv2
 
 info = []
 
-def signUp(inputNameReg, inputUserReg, inputPassReg):
-  regName, regUser, regPass = inputNameReg.get(), inputUserReg.get(), inputPassReg.get()
+def signUp(inputNameReg):
+  regName = inputNameReg.get()
   # Form Incomplete
-  if len(regName) == 0 or len(regUser) == 0 or len(regPass) == 0:
-      print('FORMULARIO INCOMPLETO')
+  if len(regName) == 0:
+      print('PORFAVOR INGRESE UN NOMBRE')
   else:
       userList = os.listdir(pathUserCheck)
       
@@ -24,27 +24,17 @@ def signUp(inputNameReg, inputUserReg, inputPassReg):
           # Save User
           username.append(user[0])
 
-      # Check User
-      if regUser in username:
-          print('USUARIO REGISTRADO ANTERIORMENTE')
-
       else:
           # No registred
           info.append(regName)
-          info.append(regUser)
-          info.append(regPass)
 
           # Export info
-          f = open(f'{outputFolderPathUser}/{regUser}.txt', 'w')
+          f = open(f'{outputFolderPathUser}/{regName}.txt', 'w')
           f.write(f'{regName},')
-          f.write(f'{regUser},')
-          f.write(regPass)
           f.close()
-          signUpBiometric(regUser)
+          signUpBiometric(regName)
 
-def signIn(inputUserLog, inputPassLog):
-    logUser, logPass = inputUserLog.get(), inputPassLog.get()
-
+def signIn():
     # DB Faces
     images = []
     clases = []

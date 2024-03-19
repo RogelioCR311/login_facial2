@@ -15,36 +15,19 @@ def home():
     # Input text
     # Name
     inputNameReg = Entry(pantalla)
-    inputNameReg.place(x=110, y=320)
-
-    # User
-    inputUserReg = Entry(pantalla)
-    inputUserReg.place(x=110, y=430)
-
-    # Pass
-    inputPassReg = Entry(pantalla)
-    inputPassReg.place(x=110, y=540)
-
-    # Input Text Sign Up
-    # User
-    inputUserLog = Entry(pantalla)
-    inputUserLog.place(x=730, y=420)
-
-    # Pass
-    inputPassLog = Entry(pantalla)
-    inputPassLog.place(x=730, y=530)
+    inputNameReg.place(x=300, y=420)
 
     # Button
     # SignUp
     imagenBR = PhotoImage(file=imgBtnSignUp)
     btReg = Button(pantalla, text='Registro', image=imagenBR, height='40', width='200')
-    btReg = Button(pantalla, text='Registro', image=imagenBR, height='40', width='200', command=lambda: signUp(inputNameReg, inputUserReg, inputPassReg))
-    btReg.place(x=300, y=580)
+    btReg = Button(pantalla, text='Registro', image=imagenBR, height='40', width='200', command=lambda: signUp(inputNameReg))
+    btReg.place(x=260, y=510)
 
     # LogIn 
     imagenBL = PhotoImage(file=imgBtnSignIn)
     btLog = Button(pantalla, text='Inicio', image=imagenBL, height='40', width='200')
-    btLog = Button(pantalla, text='Inicio', image=imagenBL, height='40', width='200', command=lambda: signIn(inputUserLog, inputPassLog))
-    btLog.place(x=800, y=580)
+    btLog = Button(pantalla, text='Inicio', image=imagenBL, height='40', width='200', command=lambda: signIn())
+    btLog.place(x=800, y=510)
 
     pantalla.mainloop()

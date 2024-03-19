@@ -175,7 +175,7 @@ def captureImg(cap, lblVideo, pantalla, method, regUser="", faceCode = "", clase
                                                     frame[385:385 + alch, 1105:1105 + anch] = imgCheck
 
                                                     # Open Eyes
-                                                    if longitud1 > 19 and longitud2 > 19:
+                                                    if longitud1 > 20 and longitud2 > 20:
                                                         cut = frameSave[yi:yf, xi:xf]                 
                                                         step = 1
 

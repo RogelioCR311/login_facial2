@@ -21,10 +21,8 @@ def welcome(username, clases):
     userFile = open(f'{outputFolderPathUser}/{username}.txt', 'r')
     infoUser = userFile.read().split(',')
     name = infoUser[0]
-    user = infoUser[1]
-    passwd = infoUser[2]
 
-    if user in clases:
+    if name in clases:
         texto1 = Label(pantalla4, text=f'BIENVENIDO {name}')
         texto1.place(x=580, y=50)
 
@@ -32,7 +30,7 @@ def welcome(username, clases):
         lblimage = Label(pantalla4)
         lblimage.place(x=490, y=80)
 
-        imgUser = cv2.imread(f'{outputFolderPathFace}/{user}.png')
+        imgUser = cv2.imread(f'{outputFolderPathFace}/{name}.png')
         imgUser = cv2.cvtColor(imgUser, cv2.COLOR_RGB2BGR)
         imgUser = Image.fromarray(imgUser)
         imgUser = imgUser.resize((325,325))
