@@ -1,9 +1,11 @@
-import tkinter as tk
-from tkinter import ttk
-from src.models.get_data import getData
-from src.resources.img_paths import *
 from src.views.create_user import createUser
 from src.models.delete_data import deleteData
+from src.models.edit_user import getUserById
+from src.models.get_data import getData
+from src.views.edit_user import editUserView
+from src.resources.img_paths import *
+import tkinter as tk
+from tkinter import ttk
 
 ID_USER = ''
 
@@ -27,7 +29,6 @@ def doubleClickTable(table, create, edit, delete):
   create["state"] = "disabled"
   edit["state"] = "normal"
   delete["state"] = "normal"
-  print(ID_USER)
 
 def admin():
   window = tk.Tk()
@@ -50,8 +51,7 @@ def admin():
   create.place(x=460, y=100)
 
   # Button edit
-  edit = tk.Button(window, text='Editar Usuario', #command=editUser, 
-                   bg='yellow', fg='black')
+  edit = tk.Button(window, text='Editar Usuario', command=lambda:editUserById(), bg='yellow', fg='black')
   edit.place(x=560, y=100)
   edit["state"] = "disabled"
 
@@ -73,3 +73,7 @@ def admin():
 def deleteAndRefresh(table, create, edit, delete):
   deleteData(ID_USER)
   refreshData(table, create, edit, delete)
+
+def editUserById():
+  document = getUserById(ID_USER)
+  editUserView(document, ID_USER)
