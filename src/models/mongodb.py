@@ -14,8 +14,7 @@ class MongoDB:
 
             self.client = MongoClient(uri)
             self.db = self.client[self.db_name]
-            print("Conexión exitosa a MongoDB.")
-            print(self.db)
+            # print("Conexión exitosa a MongoDB.")
             return self.db
         except Exception as e:
             print(f"Error al conectar a MongoDB: {str(e)}")

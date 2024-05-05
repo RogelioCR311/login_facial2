@@ -1,11 +1,12 @@
-import cv2
-import tkinter as tk
-from tkinter import Label, PhotoImage
-from PIL import Image, ImageTk
 from src.resources.img_paths import *
-from src.resources.folder_paths import outputFolderPathUser, outputFolderPathFace
+from src.resources.folder_paths import outputFolderPathFace
+from tkinter import Label, PhotoImage
+import tkinter as tk
+from PIL import Image, ImageTk
+import cv2
+from src.controllers.save_checkin import saveCheckIn
 
-def welcome(username, clases):
+def welcome(id_user, clases):
     # Window
     pantalla4 = tk.Toplevel()
     pantalla4.title('PROFILE')
@@ -17,17 +18,14 @@ def welcome(username, clases):
     bc.place(x=0, y=0, relheight=1, relwidth=1)
     bc.image = imagenbc
 
-    # File
-    userFile = open(f'{outputFolderPathUser}/{username}.txt', 'r')
-    infoUser = userFile.read().split(',')
-    name = infoUser[0]
+    if id_user in clases:
+        saveCheckIn(id_user)
 
-    if name in clases:
         # label Img
         lblimage = Label(pantalla4)
         lblimage.place(x=490, y=80)
 
-        imgUser = cv2.imread(f'{outputFolderPathFace}/{name}.png')
+        imgUser = cv2.imread(f'{outputFolderPathFace}/{id_user}.png')
         imgUser = cv2.cvtColor(imgUser, cv2.COLOR_RGB2BGR)
         imgUser = Image.fromarray(imgUser)
         imgUser = imgUser.resize((325,325))

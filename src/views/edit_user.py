@@ -3,6 +3,7 @@ from tkinter import Label, PhotoImage, ttk
 from tkcalendar import Calendar
 from src.resources.img_paths import *
 from src.controllers.edit_user import editUser
+from src.controllers.registerface import registerFace
 
 def popup(window, fecha_nac):
     win = tk.Toplevel(window)
@@ -53,6 +54,10 @@ def editUserView(document, id_user):
   cancel = tk.Button(window, text='Cancelar', command=lambda:closeWindow(window), bg='red', fg='white')
   cancel.place(x= 180, y=180)
   
+  # Button Register
+  photo = tk.Button(window, text='Registrar Rostro', command=lambda:registerAndClose(id_user, window), bg='orange', fg='black')
+  photo.place(x= 260, y=180)
+  
   fecha_nac.config(state='normal')
   nombre.insert(0, document["name"])
   apellido.insert(0, document["lastname"])
@@ -66,5 +71,9 @@ def editAndClose(nombre, apellido, fecha_nac, id_user, window):
   window.destroy()
   
 def closeWindow(window):
+   window.destroy()
+
+def registerAndClose(id_user, window):
+   registerFace(id_user)
    window.destroy()
 

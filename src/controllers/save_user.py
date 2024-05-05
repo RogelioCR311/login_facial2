@@ -6,7 +6,8 @@ def saveUser(nombre, apellido, fecha_nac):
     document = {
       "name": nombre, 
       "lastname": apellido, 
-      "birthdate": fecha_nac
+      "birthdate": fecha_nac,
+      "imgPath": ''
     }
   
     saveData(document)

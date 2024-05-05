@@ -1,11 +1,11 @@
 from src.views.create_user import createUser
+from src.views.edit_user import editUserView
 from src.models.delete_data import deleteData
 from src.models.edit_user import getUserById
 from src.models.get_data import getData
-from src.views.edit_user import editUserView
 from src.resources.img_paths import *
 import tkinter as tk
-from tkinter import ttk
+from tkinter import Button, PhotoImage, ttk
 
 ID_USER = ''
 
@@ -16,7 +16,10 @@ def refreshData(table, create, edit, delete):
   for register in registers:
     table.delete(register)
   for document in collection:
-    table.insert('', 0, text=document["_id"], values=(document["name"], document["lastname"]))
+    fotografia = 'No registrada'
+    if(document["imgPath"] != ''):
+      fotografia = 'Registrada'
+    table.insert('', 0, text=document["_id"], values=(document["name"], document["lastname"], fotografia))
   
   create["state"] = "normal"
   edit["state"] = "disabled"
@@ -36,15 +39,16 @@ def admin():
   window.title('Administracion')
 
   # Fondo
-  imagenF = tk.PhotoImage(file=imgBase)
-  background = tk.Label(image=imagenF, text='Inicio')
+  imagenBase = tk.PhotoImage(file=imgBase)
+  background = tk.Label(image=imagenBase, text='Inicio')
   background.place(x=0, y=0, relheight=1, relwidth=1)
 
-  table = ttk.Treeview(window, columns=('Nombre', 'Apellido'))
-  table.place(x=350, y=150)
+  table = ttk.Treeview(window, columns=('Nombre', 'Apellido', 'Fotografia'))
+  table.place(x=250, y=150)
   table.heading('#0', text='ID')
   table.heading('#1', text='Nombre')
   table.heading('#2', text='Apellido')
+  table.heading('#3', text='Fotografia')
 
   # Button create
   create = tk.Button(window, text='Crear Usuario', command=lambda:createUser(), bg='green', fg='white')
@@ -63,6 +67,12 @@ def admin():
   # Button Refresh
   refresh = tk.Button(window, text='Refrescar Tabla', command=lambda:refreshData(table, create, edit, delete), bg='pink', fg='black')
   refresh.place(x=770, y=100)
+  
+  # Button Return
+  imagenReturn = PhotoImage(file=imgRegresar)
+  imagenReturn = imagenReturn.subsample(14, 14)
+  btRet = Button(window, text='RegEntrada', image=imagenReturn, command=lambda:returnHome(window))
+  btRet.place(x=100, y=100)
 
   table.bind('<Double-Button-1>', lambda event: doubleClickTable(table, create, edit, delete))
 
@@ -77,3 +87,8 @@ def deleteAndRefresh(table, create, edit, delete):
 def editUserById():
   document = getUserById(ID_USER)
   editUserView(document, ID_USER)
+
+def returnHome(window):
+  window.destroy()
+  from src.views.home import home
+  home()

@@ -18,7 +18,7 @@ def compareFaces(faceCode, clases, frameRGB):
       # Min
       min = np.argmin(simi)
       if match[min]:
-        username = clases[min].upper()
+        username = clases[min]
         welcome(username, clases)
       else:
         return

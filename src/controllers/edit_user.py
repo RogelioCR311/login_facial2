@@ -2,7 +2,7 @@ from tkinter import messagebox
 from bson import ObjectId
 from src.models.edit_user import editUserById
 
-def editUser(nombre, apellido, fecha_nac, id_user):
+def editUser(nombre, apellido, fecha_nac, id_user, imgPath = ''):
   if len(nombre) != 0 and len(apellido) != 0 and len(fecha_nac) != 0:
     
     idSearch={"_id":ObjectId(id_user)}
@@ -10,7 +10,8 @@ def editUser(nombre, apellido, fecha_nac, id_user):
       "$set": {
         "name": nombre, 
         "lastname": apellido, 
-        "birthdate": fecha_nac
+        "birthdate": fecha_nac,
+        "imgPath": imgPath
       }
     }
   
