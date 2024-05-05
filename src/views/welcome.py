@@ -23,9 +23,6 @@ def welcome(username, clases):
     name = infoUser[0]
 
     if name in clases:
-        texto1 = Label(pantalla4, text=f'BIENVENIDO {name}')
-        texto1.place(x=580, y=50)
-
         # label Img
         lblimage = Label(pantalla4)
         lblimage.place(x=490, y=80)
